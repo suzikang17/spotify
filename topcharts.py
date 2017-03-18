@@ -5,6 +5,8 @@ import matplotlib.pyplot as pyplt
 import re
 import requests
 from bs4 import BeautifulSoup
+import matplotlib
+matplotlib.style.use('ggplot')
 
 
 spotify_data = pd.read_csv("regional-global-daily-latest.csv")
@@ -58,3 +60,7 @@ for i in key_list:
         year_list.append(year)
     except Exception:
         no_year.append(i)
+
+year_df = pd.Series(year_list).astype(int)
+year_df.plot.hist(bins=15)
+pyplt.show()
